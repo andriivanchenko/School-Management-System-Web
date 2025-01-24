@@ -90,3 +90,15 @@ SchoolManager/__pycache__/settings.cpython-313.pyc
 SchoolManager/__pycache__/urls.cpython-313.pyc
 SchoolManager/__pycache__/wsgi.cpython-313.pyc
 *.iml
+users/__pycache__/__init__.cpython-312.pyc
+.idea/misc.xml
+.idea/misc.xml
+.idea/School_Management_System_Web.iml
+SchoolManager/__pycache__/__init__.cpython-312.pyc
+SchoolManager/__pycache__/settings.cpython-312.pyc
+SchoolManager/__pycache__/urls.cpython-312.pyc
+SchoolManager/__pycache__/wsgi.cpython-312.pyc
+users/__pycache__/admin.cpython-312.pyc
+users/__pycache__/apps.cpython-312.pyc
+users/__pycache__/models.cpython-312.pyc
+users/migrations/__pycache__/__init__.cpython-312.pyc
