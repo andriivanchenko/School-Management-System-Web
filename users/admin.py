@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser
+from .models import CustomUser, UserRoles
 
-@admin.register(CustomUser)
 
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = (
@@ -27,4 +26,17 @@ class CustomUserAdmin(admin.ModelAdmin):
     )
 
     search_fields = ("user_login", "user_email")
+
+    list_filter = ("user_role", "is_active", "is_staff", "is_superuser")
+
+admin.site.register(CustomUser, CustomUserAdmin)
+
+
+class UserRolesAdmin(admin.ModelAdmin):
+    list_display = ("user_role_id", "user_role_name")
+    search_fields = ("user_role_id", "user_role_name")
+    list_filter = ("user_role_id", "user_role_name")
+
+admin.site.register(UserRoles, UserRolesAdmin)
+
 

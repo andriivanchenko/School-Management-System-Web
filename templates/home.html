@@ -3,7 +3,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1>Вітаємо, {{ user.username }}!</h1>
+        <h1>Вітаємо, {{ user.user_first_name }}!</h1>
         <p>Ви увійшли в систему.</p>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}

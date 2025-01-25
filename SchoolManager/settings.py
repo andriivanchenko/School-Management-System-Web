@@ -33,13 +33,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # our apps
     'users',
+    'homeworks',
+    'timetable',
+    'groups',
+    'marks'
 ]
 
 MIDDLEWARE = [
@@ -83,8 +90,8 @@ DATABASES = {
         'NAME': os.getenv('MYSQL_DATABASE'),
         'USER': os.getenv('MYSQL_ROOT_USER'),
         'PASSWORD': os.getenv('MYSQL_ROOT_PASSWORD'),
-        #'HOST': os.getenv('MYSQL_HOST'),
-        #'PORT': os.getenv('MYSQL_PORT'),
+        # 'HOST': os.getenv('MYSQL_HOST'),
+        # 'PORT': os.getenv('MYSQL_PORT'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
@@ -109,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "users.CustomUser"
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
