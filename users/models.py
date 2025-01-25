@@ -1,6 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -40,12 +40,18 @@ class CustomUser(AbstractBaseUser):
     user_email = models.EmailField(unique=True)
     user_sex = models.CharField(max_length=1)
     user_birthday = models.DateField()
-    user_role = models.CharField(max_length=50)
+    user_role = models.ForeignKey(
+        'UserRoles',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name='user_role'
+    ) # роль користувача
     user_tax_number = models.CharField(max_length=25, default='')
     user_description = models.TextField()
     user_created_at = models.DateTimeField(auto_now_add=True)
     user_changed_at = models.DateTimeField(auto_now=True)
-    # user_group_id_ref = models.ForeignKey('CustomGroup', on_delete=models.CASCADE, blank=True, null=True)
+    user_group_id_ref = models.ForeignKey('groups.UserGroup', on_delete=models.CASCADE, blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -54,7 +60,7 @@ class CustomUser(AbstractBaseUser):
     objects = SchoolUser()
 
     USERNAME_FIELD = 'user_login'
-    REQUIRED_FIELDS = ['user_first_name', 'user_last_name', 'user_email', 'user_birthday', 'user_role']
+    REQUIRED_FIELDS = ['user_first_name', 'user_last_name', 'user_email', 'user_birthday']
 
     class Meta:
         db_table = "users"
@@ -69,3 +75,19 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+class UserRoles(models.Model):
+    """
+    Роль користувача в системі. Адміністратор, вчитель, учень
+    """
+    user_role_id = models.AutoField(primary_key=True)
+    user_role_name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        db_table = "user_roles"
+        verbose_name = "user_role"
+        verbose_name_plural = "user_roles"
+
+    def __str__(self):
+        return f"{self.user_role_name}"
