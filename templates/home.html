@@ -7,10 +7,10 @@
         <p>Ви увійшли в систему.</p>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit">Log Out</button>
+            <button type="submit" class="btn btn-danger">Log Out</button>
         </form>
     {% else %}
-        <h1>Вітаємо!</h1>
-        <p>Будь ласка, <a href="{% url 'login' %}">увійдіть</a> в систему.</p>
+        {% csrf_token %}
+        {% include "registration/login.html" %}
     {% endif %}
 {% endblock %}
