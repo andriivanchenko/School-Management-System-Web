@@ -1,5 +1,15 @@
 from django.db import models
 
+DAY_CHOICES = (
+    ('Понеділок', 'Понеділок'),
+    ('Вівторок', 'Вівторок'),
+    ('Середа', 'Середа'),
+    ('Четвер', 'Четвер'),
+    ('П\'ятниця', 'П\'ятниця'),
+    ('Субота', 'Субота'),
+    ('Неділя', 'Неділя'),
+)
+
 
 class Timetables(models.Model):
     time_table_id = models.AutoField(primary_key=True, verbose_name="time_table_id")
@@ -13,7 +23,7 @@ class Timetables(models.Model):
     time_table_cabinet = models.SmallIntegerField(verbose_name="time_table_cabinet")
     time_table_start_time = models.TimeField(verbose_name="time_table_start_time")
     time_table_end_time = models.TimeField(verbose_name="time_table_end_time")
-    time_table_day = models.CharField(max_length=10, verbose_name="time_table_day")
+    time_table_day = models.CharField(choices=DAY_CHOICES, max_length=10, verbose_name="time_table_day")
     time_table_discipline_ref = models.ForeignKey(
         'DisciplineType',
         on_delete=models.CASCADE,
@@ -29,12 +39,7 @@ class Timetables(models.Model):
         ordering = ['time_table_id']
 
     def __str__(self):
-        return (
-            self.time_table_day,
-            self.time_table_cabinet,
-            self.time_table_start_time,
-            self.time_table_end_time,
-        )
+        return f"{self.time_table_group_id_ref} - {self.time_table_day} - {self.time_table_start_time}"
 
 
 class DisciplineType(models.Model):
@@ -48,7 +53,7 @@ class DisciplineType(models.Model):
         ordering = ['discipline_id']
 
     def __str__(self):
-        return self.discipline_name
+        return f"{self.discipline_name}"
 
 
 class TeacherDiscipline(models.Model):
