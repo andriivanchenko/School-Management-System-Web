@@ -10,8 +10,20 @@ class Homeworks(models.Model):
     home_work_id = models.AutoField(primary_key=True, verbose_name="home_work_id")
     home_work_name = models.CharField(max_length=255, verbose_name="home_work_name")
     home_work_user_ref = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="homework_user_ref", null=True)
-    home_work_group_id_ref = models.ForeignKey('groups.UserGroup', on_delete=models.CASCADE, verbose_name="home_work_group_id_ref", null=True)
-    home_work_timetable_ref = models.ForeignKey('timetable.Timetables', on_delete=models.CASCADE, verbose_name="home_work_timetable_ref", null=True)
+    home_work_group_id_ref = models.ForeignKey(
+        'groups.UserGroup',
+        on_delete=models.CASCADE,
+        verbose_name="home_work_group_id_ref",
+        null=True,
+        db_column="home_work_group_id_ref"
+    )
+    home_work_timetable_ref = models.ForeignKey(
+        'timetable.Timetables',
+        on_delete=models.CASCADE,
+        verbose_name="home_work_timetable_ref",
+        null=True,
+        db_column="home_work_timetable_ref"
+    )
     home_work_topic = models.CharField(max_length=255, verbose_name="home_work_topic")
     home_work_description = models.TextField(verbose_name="home_work_description")
     home_work_deadline = models.DateTimeField(verbose_name="home_work_deadline")
@@ -29,10 +41,26 @@ class Homeworks(models.Model):
 
 class HomeworkResponses(models.Model):
     home_work_response_id = models.AutoField(primary_key=True, verbose_name="home_work_response_id")
-    home_work_id_ref = models.ForeignKey('homeworks.Homeworks', on_delete=models.CASCADE, verbose_name="home_work_id_ref")
+    home_work_id_ref = models.ForeignKey(
+        'homeworks.Homeworks',
+        on_delete=models.CASCADE,
+        verbose_name="home_work_id_ref",
+        db_column="home_work_id_ref"
+    )
     home_work_response = models.TextField(verbose_name="homework_response")
-    home_work_user_id_ref = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="home_work_user_id_ref")
-    home_work_mark_id_ref = models.ForeignKey('marks.Marks', on_delete=models.CASCADE, verbose_name="home_work_mark_id_ref", null=True)
+    home_work_user_id_ref = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="home_work_user_id_ref",
+        db_column="home_work_user_id_ref"
+    )
+    home_work_mark_id_ref = models.ForeignKey(
+        'marks.Marks',
+        on_delete=models.CASCADE,
+        verbose_name="home_work_mark_id_ref",
+        null=True,
+        db_column="home_work_mark_id_ref"
+    )
     home_work_response_created_at = models.DateTimeField(auto_now_add=True, verbose_name="home_work_response_created_at")
 
     class Meta:

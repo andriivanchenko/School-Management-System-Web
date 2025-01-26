@@ -40,19 +40,25 @@ class CustomUser(AbstractBaseUser):
     user_email = models.EmailField(unique=True)
     user_sex = models.CharField(max_length=1)
     user_birthday = models.DateField()
-    user_role = models.ForeignKey(
+    user_role = models.ForeignKey(  # роль користувача
         'UserRoles',
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        verbose_name='user_role'
-    ) # роль користувача
+        verbose_name='user_role',
+        db_column='user_role'
+    )
     user_tax_number = models.CharField(max_length=25, default='')
     user_description = models.TextField()
     user_created_at = models.DateTimeField(auto_now_add=True)
     user_changed_at = models.DateTimeField(auto_now=True)
-    user_group_id_ref = models.ForeignKey('groups.UserGroup', on_delete=models.CASCADE, blank=True, null=True)
-
+    user_group_id_ref = models.ForeignKey(
+        'groups.UserGroup',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        db_column='user_group_id_ref'
+    )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

@@ -21,9 +21,20 @@ class Marks(models.Model):
         db_column='mark_student_id',
         related_name='teacher_marks'  # унікальне ім'я для зворотнього зв'язку https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.ForeignKey.related_name
     )
-    mark_discipline_type_ref = models.ForeignKey('timetable.DisciplineType', on_delete=models.CASCADE, verbose_name='mark_discipline', db_column='mark_discipline')
+    mark_discipline_type_ref = models.ForeignKey(
+        'timetable.DisciplineType',
+        on_delete=models.CASCADE,
+        verbose_name='mark_discipline',
+        db_column='mark_discipline_type_ref'
+    )
     mark_type = models.ForeignKey('MarkTypes', on_delete=models.CASCADE, verbose_name='mark_type', db_column='mark_type')
-    homework_id_ref = models.ForeignKey('homeworks.Homeworks', on_delete=models.CASCADE, verbose_name='homework_id', db_column='homework_id_ref', null=True)
+    homework_id_ref = models.ForeignKey(
+        'homeworks.Homeworks',
+        on_delete=models.CASCADE,
+        verbose_name='homework_id',
+        db_column='homework_id_ref',
+        null=True
+    )
     mark_created_at = models.DateField(auto_now_add=True, verbose_name='mark_created_at')
 
     class Meta:
