@@ -35,7 +35,7 @@ class CustomUser(AbstractBaseUser):
     # password вже є в AbstractBaseUser
     user_first_name = models.CharField(max_length=255)
     user_last_name = models.CharField(max_length=255)
-    user_surname = models.CharField(max_length=255, default='')
+    user_surname = models.CharField(max_length=255, default='', blank=True, null=True)
     user_phone = models.CharField(max_length=20, default='')
     user_email = models.EmailField(unique=True)
     user_sex = models.CharField(max_length=1)
@@ -48,8 +48,8 @@ class CustomUser(AbstractBaseUser):
         verbose_name='user_role',
         db_column='user_role'
     )
-    user_tax_number = models.CharField(max_length=25, default='')
-    user_description = models.TextField()
+    user_tax_number = models.CharField(max_length=25, default='', blank=True, null=True)
+    user_description = models.TextField(null=True, blank=True)
     user_created_at = models.DateTimeField(auto_now_add=True)
     user_changed_at = models.DateTimeField(auto_now=True)
     user_group_id_ref = models.ForeignKey(
