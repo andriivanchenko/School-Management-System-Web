@@ -43,3 +43,12 @@ class TeacherDiscipline(models.Model):
     id = models.AutoField(primary_key=True, verbose_name='id')
     teacher_id = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, verbose_name="teacher_id", db_column="teacher_id")
     discipline_id = models.ForeignKey('DisciplineType', on_delete=models.CASCADE, verbose_name="discipline_id", db_column="discipline_id")
+
+    class Meta:
+        db_table = "teacher_discipline"
+        verbose_name = "TeacherDiscipline"
+        verbose_name_plural = "TeacherDisciplines"
+        ordering = ['id']
+
+    def __str__(self):
+        return f"{self.teacher_id} - {self.discipline_id}"
