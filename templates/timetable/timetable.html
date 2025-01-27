@@ -19,6 +19,7 @@
                             {% for timetable in timetables %}
                                 <tr>
                                     <td>{{ timetable.day }}</td>
+                                    <td>{{ timetable.discipline.discipline_name }}</td>
                                     <td>{{ timetable.time_table_start_time }}</td>
                                     <td>{{ timetable.time_table_end_time }}</td>
                                     <td>{{ timetable.time_table_cabinet }}</td>
