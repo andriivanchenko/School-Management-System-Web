@@ -9,20 +9,21 @@
                         <thead>
                             <tr>
                                 <th>День</th>
+                                <th>Предмет</th>
                                 <th>Час з</th>
                                 <th>Час до</th>
                                 <th>Кабінет</th>
                                 <th>Вчитель</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% for timetable in timetables %}
+                        <tbody class="table-group-divider">
+                            {% for timetable in timetables_with_teachers %}
                                 <tr>
-                                    <td>{{ timetable.day }}</td>
-                                    <td>{{ timetable.discipline.discipline_name }}</td>
-                                    <td>{{ timetable.time_table_start_time }}</td>
-                                    <td>{{ timetable.time_table_end_time }}</td>
-                                    <td>{{ timetable.time_table_cabinet }}</td>
+                                    <th>{{ timetable.day }}</th>
+                                    <td>{{ timetable.discipline }}</td>
+                                    <td>{{ timetable.start_time | time:"G:i" }}</td>
+                                    <td>{{ timetable.end_time | time:"G:i" }}</td>
+                                    <td>{{ timetable.cabinet }}</td>
                                     <td>{{ timetable.teacher }}</td>
                                 </tr>
                             {% endfor %}

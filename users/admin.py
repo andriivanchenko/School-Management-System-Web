@@ -21,6 +21,7 @@ class CustomUserAdmin(UserAdmin):
         "user_description",
         "user_created_at",
         "user_changed_at",
+        "user_group_id_ref",
         "is_active",
         "is_staff",
         "is_superuser",
@@ -41,6 +42,7 @@ class CustomUserAdmin(UserAdmin):
                 "user_tax_number",
                 "user_birthday",
                 "user_description",
+                "user_group_id_ref",
             )
         }),
         ("Permissions", {
@@ -70,6 +72,7 @@ class CustomUserAdmin(UserAdmin):
                 "user_birthday",
                 "user_role",
                 "user_description",
+                "user_group_id_ref",
                 "is_active",
                 "is_superuser",
                 "is_staff",
