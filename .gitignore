@@ -512,3 +512,5 @@ cython_debug/
 
 # AWS User-specific
 .idea//aws.xml
+.idea/vcs.xml
+.idea/misc.xml
