@@ -9,6 +9,13 @@ User = get_user_model()
 class Homeworks(models.Model):
     home_work_id = models.AutoField(primary_key=True, verbose_name="home_work_id")
     home_work_name = models.CharField(max_length=255, verbose_name="home_work_name")
+    home_work_discipline_ref = models.ForeignKey(
+        'timetable.DisciplineType',
+        on_delete=models.CASCADE,
+        verbose_name="home_work_discipline_ref",
+        db_column="home_work_discipline_ref",
+        null=True,
+    )
     home_work_user_ref = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="homework_user_ref", null=True)
     home_work_group_id_ref = models.ForeignKey(
         'groups.UserGroup',
