@@ -1,14 +1,18 @@
 {% extends "base.html" %}
-
+{% block title %}Timetable{% endblock %}
     {% block content %}
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    {% if timetables_with_teachers|length > 0  %}
+
                     <h1>Розклад</h1>
+                    {% for day, timetables in timetables_with_teachers.items %}
+
+                    <h3 align="center">{{ day }}</h3>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>День</th>
                                 <th>Предмет</th>
                                 <th>Час з</th>
                                 <th>Час до</th>
@@ -17,18 +21,20 @@
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            {% for timetable in timetables_with_teachers %}
-                                <tr>
-                                    <th>{{ timetable.day }}</th>
-                                    <td>{{ timetable.discipline }}</td>
-                                    <td>{{ timetable.start_time | time:"G:i" }}</td>
-                                    <td>{{ timetable.end_time | time:"G:i" }}</td>
-                                    <td>{{ timetable.cabinet }}</td>
-                                    <td>{{ timetable.teacher }}</td>
-                                </tr>
-                            {% endfor %}
+
+                                    {% for timetable in timetables %}
+                                        <tr>
+                                            <td>{{ timetable.discipline }}</td>
+                                            <td>{{ timetable.start_time | time:"G:i" }}</td>
+                                            <td>{{ timetable.end_time | time:"G:i" }}</td>
+                                            <td>{{ timetable.cabinet }}</td>
+                                            <td>{{ timetable.teacher }}</td>
+                                        </tr>
+                                    {% endfor %}
                         </tbody>
                     </table>
+                    {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
