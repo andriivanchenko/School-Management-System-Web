@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
 
+
 class LoginForm(forms.Form):
     user_login = forms.CharField(
         label="Логін",
