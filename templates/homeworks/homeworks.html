@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} Домашні завдання {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Домашні завдання</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Предмет</th>
+                            <th>Дата</th>
+                            <th>Тема</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for homework in homeworks %}
+                            <tr>
+                                <td>{{ homework.home_work_discipline_ref }}</td>
+                                <td>{{ homework.home_work_deadline | date:"d.m.Y" }}</td>
+                                <td>{{ homework.home_work_topic }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-primary">Переглянути</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

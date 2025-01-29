@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party apps
+    'tinymce',
+
     # our apps
     'users',
     'homeworks',
     'timetable',
     'groups',
-    'marks'
+    'marks',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +137,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "static/js/tinymce/tiny_mce.min.js")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
