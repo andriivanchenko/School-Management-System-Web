@@ -1,9 +1,17 @@
 from django import forms
-from django.contrib.flatpages.models import FlatPage
 from tinymce.widgets import TinyMCE
+from .models import HomeworkResponses
 
-class FlatPageForm(forms.ModelForm):
+class HomeworkResponseForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=TinyMCE(
+            attrs={'cols': 80, 'rows': 30},
+            mce_attrs={'width': '100%'},
+        ),
+        label='',
+        required=True
+    )
 
     class Meta:
-        model = FlatPage
-        widgets = {'content': TinyMCE(attrs={'cols': 80, 'rows': 30})}
+        model = HomeworkResponses
+        fields = ['description']

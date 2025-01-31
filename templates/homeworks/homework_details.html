@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Деталі домашнього завдання {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Домашнє завдання</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">{{ homework.home_work_discipline_ref }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ homework.home_work_deadline | date:"d.m.Y" }}</h6>
+                        <p class="card-text">{{ homework.home_work_topic }}</p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="home_work_text">Ваша відповідь</label>
+                                {{ form.as_p }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Зберегти</button>
+                        </form>
+                        <a href="{% url 'homeworks' %}" class="btn btn-primary">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+    <script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        menubar: false,
+        height: 300,
+        width: '100%'
+      });
+    </script>
+{% endblock %}
