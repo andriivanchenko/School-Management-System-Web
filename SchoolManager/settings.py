@@ -41,15 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 3rd party apps
-    'tinymce',
-
     # our apps
     'users',
     'homeworks',
     'timetable',
     'groups',
     'marks',
+
+    # 3rd party apps
+    'tinymce',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

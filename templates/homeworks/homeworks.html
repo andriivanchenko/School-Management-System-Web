@@ -6,6 +6,11 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Домашні завдання</h1>
+                <form method="get">
+                    {{ homework_filter.form.as_p }}
+                    <button type="submit" class="btn btn-primary">Знайти</button>
+                </form>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -16,13 +21,13 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        {% for homework in homeworks %}
+                        {% for homework in homework_filter.qs %}
                             <tr>
                                 <td>{{ homework.home_work_discipline_ref }}</td>
                                 <td>{{ homework.home_work_deadline | date:"d.m.Y" }}</td>
                                 <td>{{ homework.home_work_topic }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">Переглянути</a>
+                                    <a href="{% url 'homework_details' homework.home_work_id %}" class="btn btn-primary">Переглянути</a>
                                 </td>
                             </tr>
                         {% endfor %}
