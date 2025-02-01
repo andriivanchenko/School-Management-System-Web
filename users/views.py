@@ -28,7 +28,10 @@ def login_view(request):
 
 def home_view(request):
     if request.user.is_authenticated:
-        user_role = request.user.user_role.user_role_name
+        if request.user.user_role:
+            user_role = request.user.user_role.user_role_name
+        else:
+            user_role = 'Адміністратор'
     else:
 
         return login_view(request)
