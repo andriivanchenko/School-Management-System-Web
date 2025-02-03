@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Оцінки {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Ваші оцінки</h1>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Предмет</th>
+                    <th>Тип оцінки</th>
+                    <th>Оцінка</th>
+                    <th>Дата</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for mark in marks %}
+                <tr>
+                    <td>{{ mark.mark_discipline_type_ref }}</td>
+                    <td>{{ mark.mark_type }}</td>
+                    <td>{{ mark.mark_value}}</td>
+                    <td>{{ mark.mark_created_at | date:"d.m.Y" }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

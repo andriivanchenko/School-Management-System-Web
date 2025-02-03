@@ -1,10 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from groups.models import UserGroup
-from timetable.models import Timetables
-
 User = get_user_model()
+
 
 class Homeworks(models.Model):
     home_work_id = models.AutoField(primary_key=True, verbose_name="home_work_id")
@@ -68,7 +66,8 @@ class HomeworkResponses(models.Model):
         null=True,
         db_column="home_work_mark_id_ref"
     )
-    home_work_response_created_at = models.DateTimeField(auto_now_add=True, verbose_name="home_work_response_created_at")
+    home_work_response_created_at = models.DateTimeField(auto_now_add=True,
+                                                         verbose_name="home_work_response_created_at")
 
     class Meta:
         db_table = "homework_responses"

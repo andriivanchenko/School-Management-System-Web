@@ -30,5 +30,6 @@ urlpatterns = [
     path("", include("django.contrib.auth.urls")),
     path("timetable/", include("timetable.urls")),
     path('homeworks/', include('homeworks.urls')),
+    path('marks/', include('marks.urls')),
     path('tinymce/', include('tinymce.urls')),
 ]

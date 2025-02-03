@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, get_user_model
+from django.shortcuts import render, redirect
+
 from .forms import LoginForm
-from users.models import UserRoles
 
 User = get_user_model()
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -26,14 +27,14 @@ def login_view(request):
 
     return render(request, 'registration/login.html', {'form': form})
 
+
 def home_view(request):
     if request.user.is_authenticated:
-        if request.user.user_role:
+        if request.user.user_role is not None:
             user_role = request.user.user_role.user_role_name
         else:
             user_role = 'Адміністратор'
     else:
 
         return login_view(request)
-
     return render(request, 'home.html', {'user_role': user_role})

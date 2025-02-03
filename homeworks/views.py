@@ -8,7 +8,7 @@ from .forms import HomeworkResponseForm
 from .models import Homeworks
 
 User = get_user_model()
-# Create your views here.
+
 
 class HomeworksView(View):
     model = Homeworks
@@ -22,7 +22,7 @@ class HomeworksView(View):
         homework_filter = HomeworksFilter(
             request.GET,
             queryset=homeworks,
-            request=request      # передаємо запит в фільтр за filters.py
+            request=request  # передаємо запит в фільтр за filters.py
         )
 
         context = {
@@ -58,7 +58,8 @@ class HomeworkDetailsView(View):
         form = HomeworkResponseForm(request.POST)
 
         if form.is_valid():
-            response = form.save(commit=False) # TODO: зберігаємо форму та поки не комітимо в БД (виправити пілся тесту)
+            response = form.save(
+                commit=False)  # TODO: зберігаємо форму та поки не комітимо в БД (виправити пілся тесту)
             response.home_work_id_ref = homework
             response.home_work_user_id_ref = request.user
             response.save()
@@ -70,7 +71,7 @@ class HomeworkDetailsView(View):
             'form': form,
         }
 
-        return render(request, 'homeworks/homework_answer.html', context) # TODO: перевід на сторінку з відводіддю
+        return render(request, 'homeworks/homework_answer.html', context)  # TODO: перевід на сторінку з відводіддю
 
 
 class HomeworkAnswerView(View):
