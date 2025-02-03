@@ -1,8 +1,5 @@
-from django.contrib.auth import get_user_model
 from django.db import models
-from groups.models import UserGroup
 
-# Create your models here.
 
 class Marks(models.Model):
     mark_id = models.AutoField(primary_key=True, verbose_name='mark_id')
@@ -12,14 +9,14 @@ class Marks(models.Model):
         on_delete=models.CASCADE,
         verbose_name='mark_teacher_id',
         db_column='mark_teacher_id',
-        related_name='student_marks'  # унікальне ім'я для зворотнього зв'язку https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.ForeignKey.related_name
+        related_name='student_marks'
     )
     mark_student_id = models.ForeignKey(
         'users.CustomUser',
         on_delete=models.CASCADE,
         verbose_name='mark_student_id',
         db_column='mark_student_id',
-        related_name='teacher_marks'  # унікальне ім'я для зворотнього зв'язку https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.ForeignKey.related_name
+        related_name='teacher_marks'
     )
     mark_discipline_type_ref = models.ForeignKey(
         'timetable.DisciplineType',
@@ -27,7 +24,8 @@ class Marks(models.Model):
         verbose_name='mark_discipline',
         db_column='mark_discipline_type_ref'
     )
-    mark_type = models.ForeignKey('MarkTypes', on_delete=models.CASCADE, verbose_name='mark_type', db_column='mark_type')
+    mark_type = models.ForeignKey('MarkTypes', on_delete=models.CASCADE, verbose_name='mark_type',
+                                  db_column='mark_type')
     homework_id_ref = models.ForeignKey(
         'homeworks.Homeworks',
         on_delete=models.CASCADE,
@@ -44,7 +42,8 @@ class Marks(models.Model):
         ordering = ['mark_id']
 
     def __str__(self):
-        return self.mark_value
+        return str(self.mark_value)
+
 
 class MarkTypes(models.Model):
     mark_type_id = models.AutoField(primary_key=True, verbose_name='mark_type_id')
@@ -58,7 +57,3 @@ class MarkTypes(models.Model):
 
     def __str__(self):
         return self.mark_type_name
-
-
-
-
