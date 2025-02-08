@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} Профіль {% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <head>
+         <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Профіль користувача</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .profile-container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+                .profile-item { margin-bottom: 10px; }
+            </style>
+        </head>
+            <body>
+                <div class="profile-container">
+                <h2>Профіль користувача</h2>
+                <div class="profile-item"><strong>Логін:</strong> {{ user.user_login }}</div>
+                <div class="profile-item"><strong>Им'я:</strong> {{ user.user_first_name }}</div>
+                <div class="profile-item"><strong>Прізвище:</strong> {{ user.user_last_name }}</div>
+                <div class="profile-item"><strong>По-батькові:</strong> {{ user.user_surname }}</div>
+                <div class="profile-item"><strong>Телефон:</strong> {{ user.user_phone }}</div>
+                <div class="profile-item"><strong>Email:</strong> {{ user.user_email }}</div>
+                <div class="profile-item"><strong>Стать:</strong> {{ user.user_sex }}</div>
+                <div class="profile-item"><strong>Дата народження:</strong> {{ user.user_birthdate }}</div>
+                </div>
+            </body>
+
+    {% else %}
+        {% csrf_token %}
+        {% include "registration/login.html" %}
+    {% endif %}
+{% endblock %}

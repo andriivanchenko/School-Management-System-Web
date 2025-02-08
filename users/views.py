@@ -1,5 +1,7 @@
 from django.contrib.auth import login, authenticate, get_user_model
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
 
 from .forms import LoginForm
 
@@ -38,3 +40,14 @@ def home_view(request):
 
         return login_view(request)
     return render(request, 'home.html', {'user_role': user_role})
+
+
+class ProfileView(View):
+    model = User
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect(reverse("login"))
+
+        user = request.user
+        return render(request, 'profile.html', {'user': user})
