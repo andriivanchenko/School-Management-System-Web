@@ -1,1 +1,22 @@
 {% extends "base.html" %}
+{% block title %} Відповіді на домашнє завдання {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Відповідь на домашнє завдання</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title
+                        text-primary">Ваша відповідь:</h5>
+                    <p class="card-text">{{ response.home_work_response | safe }}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Дата відправлення завдання: {{ response.home_work_response_created_at | date:"d.m.Y" }}</h6>
+                    <a href="{% url 'homeworks' %}" class="btn btn-primary">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
