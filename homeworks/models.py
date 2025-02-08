@@ -76,4 +76,4 @@ class HomeworkResponses(models.Model):
         ordering = ['home_work_response_id']
 
     def __str__(self):
-        return self.home_work_response_id
+        return f"{self.home_work_response}, {self.home_work_user_id_ref}"

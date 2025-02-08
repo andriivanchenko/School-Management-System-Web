@@ -3,7 +3,7 @@ from tinymce.widgets import TinyMCE
 from .models import HomeworkResponses
 
 class HomeworkResponseForm(forms.ModelForm):
-    description = forms.CharField(
+    home_work_response = forms.CharField(
         widget=TinyMCE(
             attrs={'cols': 80, 'rows': 30},
             mce_attrs={'width': '100%'},
@@ -14,4 +14,4 @@ class HomeworkResponseForm(forms.ModelForm):
 
     class Meta:
         model = HomeworkResponses
-        fields = ['description']
+        fields = ['home_work_response']

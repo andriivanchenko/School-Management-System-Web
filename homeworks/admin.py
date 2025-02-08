@@ -35,10 +35,20 @@ class HomeworkResponsesAdmin(admin.ModelAdmin):
     list_display = (
         "home_work_response_id",
         "home_work_id_ref",
-        "home_work_response",
         "home_work_user_id_ref",
-        "home_work_mark_id_ref",
+        "home_work_response",
         "home_work_response_created_at",
+    )
+
+    search_fields = ("home_work_response",)
+
+    fieldsets = (
+        (None, {"fields": ("home_work_id_ref", "home_work_user_id_ref")}),
+        ("Homework Response Info", {
+            "fields": (
+                "home_work_response",
+            )
+        }),
     )
 
 admin.site.register(HomeworkResponses, HomeworkResponsesAdmin)

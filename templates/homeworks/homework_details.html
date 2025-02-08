@@ -12,6 +12,7 @@
                         <h5 class="card-title text-primary">{{ homework.home_work_discipline_ref }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ homework.home_work_deadline | date:"d.m.Y" }}</h6>
                         <p class="card-text">{{ homework.home_work_topic }}</p>
+                        <p class="card-text">{{ homework.home_work_description }}</p>
                         <form method="POST">
                             {% csrf_token %}
                             <div class="form-group">
