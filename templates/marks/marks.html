@@ -6,10 +6,13 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Ваші оцінки</h1>
+
+            {% for group_title, marks in marks_grouped_list.items %}
+            <h3 align="center">{{ group_title }}</h3>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Предмет</th>
+                    <th>{% if user.user_role.user_role_id == 2 %}Учень{% else %}Вчитель{% endif %}</th>
                     <th>Тип оцінки</th>
                     <th>Оцінка</th>
                     <th>Дата</th>
@@ -18,7 +21,7 @@
                 <tbody class="table-group-divider">
                 {% for mark in marks %}
                 <tr>
-                    <td>{{ mark.mark_discipline_type_ref }}</td>
+                    <td>{% if user.user_role.user_role_id == 2 %}{{ mark.mark_student_id }}{% else %}{{ mark.mark_teacher_id }}{% endif %}</td>
                     <td>{{ mark.mark_type }}</td>
                     <td>{{ mark.mark_value}}</td>
                     <td>{{ mark.mark_created_at | date:"d.m.Y" }}</td>
@@ -26,6 +29,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            {% endfor %}
         </div>
     </div>
 </div>
