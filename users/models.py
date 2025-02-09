@@ -74,7 +74,7 @@ class CustomUser(AbstractBaseUser):
         verbose_name_plural = "Users"
 
     def __str__(self):
-        return f"{self.user_first_name} {self.user_last_name} ({self.user_email})"
+        return f"{self.user_first_name} {self.user_last_name}"
 
     def has_perm(self, perm, obj=None):
         return True
