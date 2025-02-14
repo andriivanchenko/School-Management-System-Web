@@ -17,7 +17,7 @@
                                 <th>Час з</th>
                                 <th>Час до</th>
                                 <th>Кабінет</th>
-                                <th>Вчитель</th>
+                                <th>{% if user.user_role.user_role_id == 2 %}Навчальний клас{% else %}Вчитель{% endif %}</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -28,7 +28,7 @@
                                             <td>{{ timetable.start_time | time:"G:i" }}</td>
                                             <td>{{ timetable.end_time | time:"G:i" }}</td>
                                             <td>{{ timetable.cabinet }}</td>
-                                            <td>{{ timetable.teacher }}</td>
+                                            <td>{% if user.user_role.user_role_id == 2 %}{{ timetable.group_name }}{% else %}{{ timetable.teacher }}{% endif %}</td>
                                         </tr>
                                     {% endfor %}
                         </tbody>

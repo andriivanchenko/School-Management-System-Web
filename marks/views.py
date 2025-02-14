@@ -15,5 +15,19 @@ class MarksView(View):
         if not request.user.is_authenticated:
             return redirect(reverse("login"))
 
-        marks = self.model.objects.filter(mark_student_id=request.user.user_id)
-        return render(request, 'marks/marks.html', {'marks': marks})
+        marks_grouped_list = {}
+        role = request.user.user_role.user_role_id
+        if role == 2:
+            marks = self.model.objects.filter(mark_teacher_id=request.user.user_id)
+        else:
+            marks = self.model.objects.filter(mark_student_id=request.user.user_id)
+        for mark in marks:
+            group_title = mark.mark_discipline_type_ref.discipline_name
+            if role == 2:
+                group_name = mark.mark_student_id.user_group_id_ref.group_name
+                group_title = f"{group_title} - {group_name}"
+            if group_title not in marks_grouped_list:
+                marks_grouped_list[group_title] = []
+
+            marks_grouped_list[group_title].append(mark)
+        return render(request, 'marks/marks.html', {'marks_grouped_list': marks_grouped_list})

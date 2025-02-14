@@ -25,7 +25,6 @@
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="{% url 'profile' %}">Профіль</a></li>
-            <li><a class="dropdown-item" href="#">Домашні завдання</a></li>
             <li>
                 <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
