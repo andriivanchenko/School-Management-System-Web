@@ -31,7 +31,9 @@ class Marks(models.Model):
         on_delete=models.CASCADE,
         verbose_name='homework_id',
         db_column='homework_id_ref',
-        null=True
+        null=True,
+        default='',
+        blank=True
     )
     mark_created_at = models.DateField(auto_now_add=True, verbose_name='mark_created_at')
 
